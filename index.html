@@ -60,31 +60,35 @@
   <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"></script>
 
   <script>
-    // Firebase configuration (replace with your Firebase project config)
+    // Your Firebase configuration
     const firebaseConfig = {
-  apiKey: "AIzaSyBAYBxw8RD3F16qAxhfO3CUxd9V3yO_i5U",
-  authDomain: "income-and-expance-tracker.firebaseapp.com",
-  projectId: "income-and-expance-tracker",
-  storageBucket: "income-and-expance-tracker.firebasestorage.app",
-  messagingSenderId: "285793371542",
-  appId: "1:285793371542:web:ea6bd2b243bfb7617909b7",
-  measurementId: "G-95JK6FGYRC"
-};
+      apiKey: "AIzaSyBAYBxw8RD3F16qAxhfO3CUxd9V3yO_i5U",
+      authDomain: "income-and-expance-tracker.firebaseapp.com",
+      projectId: "income-and-expance-tracker",
+      storageBucket: "income-and-expance-tracker.firebasestorage.app",
+      messagingSenderId: "285793371542",
+      appId: "1:285793371542:web:ea6bd2b243bfb7617909b7",
+      measurementId: "G-95JK6FGYRC"
+    };
 
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Sign in function
+    // Sign in function with debug logs
     function signIn() {
+      console.log('signIn function called');
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      console.log('Attempting login with:', email);
 
       auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
+          console.log('Login successful, redirecting to homepage.html');
           window.location.href = 'homepage.html';
         })
         .catch((error) => {
+          console.error('Login error:', error.code, error.message);
           alert('Error signing in: ' + error.message);
         });
     }
